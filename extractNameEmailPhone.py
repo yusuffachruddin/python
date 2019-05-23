@@ -16,8 +16,8 @@ nltk.download('words')
 stop = stopwords.words('english')
 
 string = """ Hey,
-This week has been crazy. Attached is my report on IBM. Can you give it a quick read and provide some feedback.
-Also, make sure you reach out to Will Smith (claire@xyz.com).
+This week has been crazy. Attached is my report on IBM. Can you give it a quick read and provide some feedback from Yusuf Fachruddin
+Also, make sure you reach out to (claire@xyz.com).
 You're the best.
 
 212-555-1234
