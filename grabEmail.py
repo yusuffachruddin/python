@@ -1,5 +1,6 @@
 import re
 
+# function to grab email
 def getEmail(text):
     emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", text)
     return emails
