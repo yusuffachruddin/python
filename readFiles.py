@@ -5,7 +5,7 @@ import fileinput
 import sys
 
 
-entries = os.listdir('C:\\Users\\Home\\Documents\\text')
+entries = os.listdir('D:\\Python\\SRC\\Dev')
 
 for entry in entries:
     if fnmatch.fnmatch(entry, 'Table*.txt'):
@@ -19,6 +19,6 @@ print()
 
 
 # alternative listdir using scandir
-with os.scandir('C:\\Users\\Home\\Documents\\text') as entries:
+with os.scandir('D:\\Python\\SRC\\Dev') as entries:
     for entry in entries:
-        print(entry.name)
+        print(entry.name, entry.inode)

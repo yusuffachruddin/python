@@ -18,4 +18,6 @@ results = search_dates("Today is December 1, 2018")
 # exclude results matching to “today”
 need = [result for result in results if result[0].lower() != "today"]
 
-need
+for x in need:
+    date_string = x[0]
+date_string

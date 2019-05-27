@@ -2,7 +2,7 @@ import os
 
 files = {}
 
-for filename in os.listdir('C:\\Users\\Home\\Documents\\text'):
+for filename in os.listdir('D:\\Python\\SRC\\Dev'):
     if os.path.isfile(filename) \
        and f.endswith(".txt") \
        and not filename in files:
@@ -13,4 +13,5 @@ for filename, text in files.items():
     print(filename)
     # print("=" * 80)
     print(text)
-    
+
+print(filename)
