@@ -3,6 +3,7 @@ from nltk.tag import StanfordNERTagger
 from nltk import word_tokenize
 import os
 from nltk.corpus import stopwords
+import csv
 
 def stopw(document):
     stop = stopwords.words('english')
@@ -34,7 +35,7 @@ classified_text = st.tag(tokenized_text)
 classified_text
 
 
-listwho[]
+listwho = []
 f = open(os.path.join('D:\\Python\\SRC\\Dev', '29.txt'), 'r', encoding='utf8')
 plain = f.read()
 cln = stopw(plain)
@@ -43,4 +44,18 @@ classified_text = st.tag(tokenized_text)
 # classified_text
 for x in classified_text:
 	if x[1] == 'PERSON':
-		who = x[0]
+		listwho.extend([x[0]])
+
+listwho
+
+path = 'D:\\Python\\SRC'
+header = [['id', 'pii']]
+with open(os.path.join(path, 'result.csv'), 'w') as csvFile:
+    csvFile.write('id,pii\n')
+    for p in listwho:
+        try:
+            csvFile.write('{},"{}"\n'.format(p[0], json.dumps(p[1]).replace('"', '""')))
+        except:
+            pass
+for p in listwho:
+    print(p[0])
