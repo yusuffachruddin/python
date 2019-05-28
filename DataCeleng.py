@@ -13,7 +13,10 @@ nltk.download('words')
 from dateparser.search import search_dates
 
 
-
+def stopw(document):
+    stop = stopwords.words('english')
+    res = ' '.join([i for i in document.split() if i not in stop])
+    return res
 
 
 def getCC(string):
@@ -34,7 +37,7 @@ def getEmail(string):
     r = re.compile(r'[\w\.-]+@[\w\.-]+')
     return r.findall(string)
 
-def sw(document):
+def stopw(document):
     stop = stopwords.words('english')
     res = ' '.join([i for i in document.split() if i not in stop])
     return res
@@ -46,6 +49,12 @@ def ie_preprocess(document):
     sentences = [nltk.pos_tag(sent) for sent in sentences]
     return sentences
 
+def nltkstanf(document):
+    st = StanfordNERTagger('D:\\Python\\SRC\\stanford-ner-2018-10-16\\classifiers\\english.all.3class.distsim.crf.ser.gz',
+    					   'D:\\Python\\SRC\\stanford-ner-2018-10-16\\stanford-ner.jar',encoding='utf-8')
+    clean = stopw(text).title()
+
+
 def extract_names(document):
     names = []
     sentences = ie_preprocess(document)
@@ -56,9 +65,7 @@ def extract_names(document):
                     names.append(' '.join([c[0] for c in chunk]))
     return names
 
-st = StanfordNERTagger('D:\\Python\\SRC\\stanford-ner-2018-10-16\\classifiers\\english.all.3class.distsim.crf.ser.gz',
-					   'D:\\Python\\SRC\\stanford-ner-2018-10-16\\stanford-ner.jar',
-					   encoding='utf-8')
+
 
 def scrubbing(path):
     listResult = []
