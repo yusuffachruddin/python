@@ -52,7 +52,17 @@ def ie_preprocess(document):
 def nltkstanf(document):
     st = StanfordNERTagger('D:\\Python\\SRC\\stanford-ner-2018-10-16\\classifiers\\english.all.3class.distsim.crf.ser.gz',
     					   'D:\\Python\\SRC\\stanford-ner-2018-10-16\\stanford-ner.jar',encoding='utf-8')
-    clean = stopw(text).title()
+    listwho = []
+    f = open(os.path.join('D:\\Python\\SRC\\Dev', '29.txt'), 'r', encoding='utf8')
+    plain = f.read()
+    cln = stopw(plain)
+    tokenized_text = word_tokenize(cln.title())
+    classified_text = st.tag(tokenized_text)
+    # classified_text
+    for x in classified_text:
+    	if x[1] == 'PERSON':
+    		listwho.extend([x[0]])
+    return listwho
 
 
 def extract_names(document):
