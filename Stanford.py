@@ -31,6 +31,7 @@ st = StanfordNERTagger('D:\\Python\\SRC\\stanford-ner-2018-10-16\\classifiers\\e
 
 initText = clean.title()
 tokenized_text = word_tokenize(initText)
+tokenized_text
 classified_text = st.tag(tokenized_text)
 classified_text
 

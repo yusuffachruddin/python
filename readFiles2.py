@@ -8,7 +8,7 @@ for filename in os.listdir('D:\\Python\\SRC\\Dev'):
        and not filename in files:
         with open(filename, "r") as file:
             files[filename] = file.read()
-
+print(files)
 for filename, text in files.items():
     print(filename)
     # print("=" * 80)
