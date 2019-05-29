@@ -54,10 +54,11 @@ def getPhone(path, filename):
 def getEmail(path, filename):
     f = open(os.path.join(path, filename), 'r', encoding='utf8')
     plain = f.read()
-    r = re.compile(r'[\w\.-]+@[\w\.-]+')
+    # p = re.compile(r'([^<]+)<[^<]*>(?:;\s*)?')
+    r = re.compile(r'[\sa-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')
     # convert to set to distinct value then convert back to list
     # return list(set(r.findall(plain)))
-    return r.findall(plain)
+    return  r.findall(plain)
 
 def stopw(document):
     stop = stopwords.words('english')
@@ -113,7 +114,7 @@ for filename in os.listdir(path):
         lstCC = getValidCC(path,filename)
         # lstPhon = getPhone(path, filename)
 # lstEmail + lstwho + lstDT + lstCC
-        listResult.append([filename.replace(".txt", ""), lstDT])
+        listResult.append([filename.replace(".txt", ""),lstEmail])
 
 
 listResult
@@ -128,10 +129,10 @@ header = [['id', 'pii']]
 with open('D:\\Python\\SRC\\train_labelsx.csv', 'w') as csvFile:
     csvFile.write('id,pii\n')
     for p in listResult:
-        try:
-            if p[1]!='':
+        # try:
+            if p[1]!=[]:
                 csvFile.write('{},"{}"\n'.format(p[0], json.dumps(p[1]).replace('"', '""')))
             else:
                 csvFile.write('{},{}\n'.format(p[0], json.dumps(p[1]).replace('"', '""')))
-        except:
-            pass
+        # except:
+        #     pass
